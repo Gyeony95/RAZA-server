@@ -20,7 +20,7 @@ http.listen(app.get('port'), function() {
 
 
 io.sockets.on('connection', function(socket) {
-
+  console.log("socket on");
   // convenience function to log server messages on the client
   //안드로이드 서버에 로그보내는 부분임
   function log() {
