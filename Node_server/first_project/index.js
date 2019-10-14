@@ -15,9 +15,9 @@ var mysql = require('mysql');
 var connection = mysql.createConnection({                                                                   
   host: 'localhost',
   port:3306,
-  user:'root',
-  password:'KGH2077kgh!',
-  database:'raza'
+  user:'django',
+  password:'django-user-password',
+  database:'RAZA'
 })
 connection.connect();
 
