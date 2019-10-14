@@ -32,6 +32,7 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('message', function(message) {
     log('Client said: ', message);
+    console.log("서버 온 메세지");
     // for a real app, would be room-only (not broadcast)
     socket.broadcast.emit('message', message);  
 });
