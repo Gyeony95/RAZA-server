@@ -22,12 +22,10 @@ http.listen(app.get('port'), function() {
 io.sockets.on('connection', function(socket) {
 
   // convenience function to log server messages on the client
-  //안드로이드 서버에 로그보내는 부분임
   function log() {
     var array = ['Message from server:'];
     array.push.apply(array, arguments);
     socket.emit('log', array);
-    console.log(array);
   }
 
   socket.on('message', function(message) {
@@ -40,14 +38,14 @@ io.sockets.on('connection', function(socket) {
     log('Received request to create or join room ' + room);
 
     var numClients = io.sockets.sockets.length;      
-    log('Room ' + room + ' now has ' + numClients + ' client(s)');
+log('Room ' + room + ' now has ' + numClients + ' client(s)');
 
-    if (numClients%2 === 1) {
+    if (numClients === 1) {
       socket.join(room);
       log('Client ID ' + socket.id + ' created room ' + room);
       socket.emit('created', room, socket.id);
 
-    } else if (numClients%2 === 0) {
+    } else if (numClients === 2) {
       log('Client ID ' + socket.id + ' joined room ' + room);
       io.sockets.in(room).emit('join', room);
       socket.join(room);
