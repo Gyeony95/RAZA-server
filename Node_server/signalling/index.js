@@ -20,7 +20,7 @@ http.listen(app.get('port'), function() {
 
 
 io.sockets.on('connection', function(socket) {
-  console.log("socket on");
+
   // convenience function to log server messages on the client
   //안드로이드 서버에 로그보내는 부분임
   function log() {
@@ -32,7 +32,6 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('message', function(message) {
     log('Client said: ', message);
-    console.log("서버 온 메세지");
     // for a real app, would be room-only (not broadcast)
     socket.broadcast.emit('message', message);  
 });
@@ -43,12 +42,12 @@ io.sockets.on('connection', function(socket) {
     var numClients = io.sockets.sockets.length;      
     log('Room ' + room + ' now has ' + numClients + ' client(s)');
 
-    if (numClients === 1) {
+    if (numClients%2 === 1) {
       socket.join(room);
       log('Client ID ' + socket.id + ' created room ' + room);
       socket.emit('created', room, socket.id);
 
-    } else if (numClients === 2) {
+    } else if (numClients%2 === 0) {
       log('Client ID ' + socket.id + ' joined room ' + room);
       io.sockets.in(room).emit('join', room);
       socket.join(room);
