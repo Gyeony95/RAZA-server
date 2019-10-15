@@ -12,7 +12,7 @@ var io = require('socket.io')(http);
 //test
 var fs = require('fs')
 //소켓세팅
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 5000));
 //맨처음에 서버 연결하면 몇번포트에 서버 연결되어있는지 ㅇㅇ
 http.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
