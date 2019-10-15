@@ -26,6 +26,7 @@ io.sockets.on('connection', function(socket) {
     var array = ['Message from server:'];
     array.push.apply(array, arguments);
     socket.emit('log', array);
+    console.log(array);
   }
 
   socket.on('message', function(message) {
@@ -38,7 +39,7 @@ io.sockets.on('connection', function(socket) {
     log('Received request to create or join room ' + room);
 
     var numClients = io.sockets.sockets.length;      
-log('Room ' + room + ' now has ' + numClients + ' client(s)');
+    log('Room ' + room + ' now has ' + numClients + ' client(s)');
 
     if (numClients === 1) {
       socket.join(room);
