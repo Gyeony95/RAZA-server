@@ -38,7 +38,7 @@ module.exports = function() {
         return element.id == id;
       });
       stream.name = name;
-      stream.connect = connect;
+      stream.connect = true;
       console.log('업뎃 실행22'+name);
     },
 
