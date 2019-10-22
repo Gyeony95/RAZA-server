@@ -17,8 +17,9 @@ module.exports = function(io, streams) {
       
     client.on('readyToStream', function(options) {
       console.log('-- ' + client.id + ' is ready to stream --');
-      
-      streams.addStream(client.id, options.name); 
+      //고유아이디랑 이름을 스트림을 넘김
+      streams.addStream(client.id, options.name, options.connect); 
+     
     });
     
     client.on('update', function(options) {

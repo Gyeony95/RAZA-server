@@ -8,14 +8,19 @@ module.exports = function() {
   /**
    * Stream object
    */
-  var Stream = function(id, name) {
+  //아이디와 이름을 전달받음
+  var Stream = function(id, name, connect) {
     this.name = name;
     this.id = id;
+    this.connect = connect;
   }
 
   return {
-    addStream : function(id, name) {
-      var stream = new Stream(id, name);
+    //스트림 추가할때 //소켓핸들러에서 추가해줌
+    addStream : function(id, name, connect) {
+      var stream = new Stream(id, name, connect);
+     
+      //스트림 리스트에 추가
       streamList.push(stream);
     },
 
@@ -28,11 +33,12 @@ module.exports = function() {
     },
 
     // update function
-    update : function(id, name) {
+    update : function(id, name ,connect) {
       var stream = streamList.find(function(element, i, array) {
         return element.id == id;
       });
       stream.name = name;
+      stream.connect = connect;
     },
 
     getStreams : function() {
