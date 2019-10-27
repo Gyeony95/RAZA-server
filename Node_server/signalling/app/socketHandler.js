@@ -14,6 +14,12 @@ module.exports = function(io, streams) {
         details.from = client.id;
         otherClient.emit('message', details);
     });
+
+
+    client.on('exchange', function (localid) {
+      console.log('상대 아이디 : '+ localid);
+        otherClient.emit('exchange',localid);
+    });
       
     client.on('readyToStream', function(options) {
       console.log('-- ' + client.id + ' is ready to stream --');
@@ -23,7 +29,8 @@ module.exports = function(io, streams) {
     });
     
     client.on('update', function(options) {
-      streams.update(client.id, options.name);
+      streams.update(client.id, options.name, true);
+      console.log('업뎃 실행'+options.name);
     });
 
     function leave() {
