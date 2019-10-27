@@ -17,6 +17,7 @@ module.exports = function(io, streams) {
 
 
     client.on('exchange', function (localid) {
+      console.log('테스트 ');
       console.log('상대 아이디 : '+ localid);
         otherClient.emit('exchange',localid);
     });
